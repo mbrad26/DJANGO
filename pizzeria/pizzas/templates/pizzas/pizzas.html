@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends 'pizzas/base.html' %}
+
+    {% block content %}
+        <h3>Pizzas:</h3>
+        <ul>
+            {% for pizza in pizzas %}
+                <li>
+                    <a href="{% url 'pizzas:toppings' pizza.id %}">{{ pizza }}</a>
+                </li>
+            {% empty %}
+                <li>No pizzas have been added to the menu yet.</li>
+            {% endfor %}
+        </ul>
+    {% endblock content%}
+</body>
+</html>
