@@ -4,7 +4,6 @@ from django.urls import reverse
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 
-
 def index(request):
 
     return render(request, 'logs/index.html')
@@ -33,7 +32,7 @@ def new_topic(request):
         form = TopicForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('logs:topics'))
+        return HttpResponseRedirect(reverse('logs:topics'))
 
     context = {'form': form}
     return render(request, 'logs/new_topic.html', context)
@@ -70,9 +69,8 @@ def edit_entry(request, entry_id):
             form.save()
             return HttpResponseRedirect(reverse('logs:topic', args=[topic.id]))
 
-    context = {'entry': entry, 'topic': topic, 'form': form}
+    context = {'topic': topic, 'entry': entry, 'form': form}
     return render(request, 'logs/edit_entry.html', context)
-
 
 
 
