@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends 'blogs/base.html' %}
+
+    {% block content %}
+
+        <h3>
+            <a href="{% url 'blogs:new_blog' %}">Create a new blog</a>
+        </h3>
+            <ul>
+                {% for blog in blogs %}
+                    <li>
+                        <p>
+                            {{ blog.date_added|date:'M d, Y H:i' }}
+                        </p>
+                        <h4>
+                            <a href="{% url 'blogs:blog' blog.id %}">{{ blog.title }}</a>
+                        </h4>
+                        <p>
+                            <a href="{% url 'blogs:edit_blog' blog.id %}">Edit blog</a>
+                        </p>
+                    </li>
+                {% endfor %}
+            </ul>
+    {% endblock content %}
+</body>
+</html>
