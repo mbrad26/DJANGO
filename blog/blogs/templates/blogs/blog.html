@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends 'blogs/base.html' %}
+
+    {% block content %}
+        <h2>
+            <a href="{% url 'blogs:index' %}">Blogs</a>
+        </h2>
+
+        <h3>{{ blog.title }}</h3>
+        <p>{{ blog.date_added|date:'M d, Y'}}</p>
+
+        <p>{{ blog.text|linebreaks }}</p>
+        <p>
+            <a href="{% url 'blogs:edit_blog' blog.id %}">Edit blog</a>
+        </p>
+    {% endblock content %}
+
+</body>
+</html>
