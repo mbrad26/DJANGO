@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends 'blogs/base.html' %}
+
+    {% block content %}
+
+    <h3>Create new blog:</h3>
+        <form action="{% url 'blogs:new_blog' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button name="submit">Create</button>
+        </form>
+    {% endblock content %}
+</body>
+</html>
