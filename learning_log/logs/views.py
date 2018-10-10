@@ -4,6 +4,7 @@ from django.urls import reverse
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 
+
 def index(request):
 
     return render(request, 'logs/index.html')
