@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends 'logs/base.html' %}
+
+    {% block content %}
+        <h3>Add a new entry:</h3>
+        <form method="post" action="{% url 'logs:new_entry' topic.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button name="submit">Save entry</button>
+            <input type="hidden" name="next" value="{% url 'logs:topic' topic.id %}"/>
+        </form>
+    {% endblock content %}
+</body>
+</html>
