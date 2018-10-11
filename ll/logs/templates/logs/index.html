@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends 'logs/base.html' %}
+
+    {% block content %}
+
+        {% if user.is_authenticated %}
+            <h3>Welcome to my New Learning Log.</h3>
+            <p>As a register user you can now browse the entire collection of logs.</p>
+        {% else %}
+            <h3>To gain access to this library please Log in or Register first.</br>
+                Thank you.
+            </h3>
+        {% endif %}
+            <p>
+               <a href="{% url 'logs:topics' %}">Topics</a>
+            </p>
+    {% endblock content %}
+</body>
+</html>

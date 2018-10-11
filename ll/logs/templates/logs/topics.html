@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends 'logs/base.html' %}
+
+    {% block content %}
+        <h3>Topics:</h3>
+        <p>
+            <a href="{% url 'logs:new_topic' %}">Add a new topic.</a>
+        </p>
+        {% for topic in topics %}
+             <ul>
+                <li>
+                    <h4>
+                        <a href="{% url 'logs:topic' topic.id %}">{{ topic }}</a>
+                    </h4>
+                </li>
+             </ul>
+        {% endfor %}
+
+    {% endblock content %}
+</body>
+</html>
