@@ -1,10 +1,16 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from .models import BlogPost
 from .forms import NewBlog, EditBlog
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+
+def check_blog_owner(request, blog):
+    if blog.owner != request.owner:
+        raise Http404
 
 
 def blogs(request):
@@ -14,13 +20,16 @@ def blogs(request):
     return render(request, 'blogs/index.html', context)
 
 
+@login_required
 def blog(request, blog_id):
 
     blog = BlogPost.objects.get(id=blog_id)
+
     context = {'blog': blog}
     return render(request, 'blogs/blog.html', context)
 
 
+@login_required
 def new_blog(request):
 
     if request.method != 'POST':
@@ -34,6 +43,7 @@ def new_blog(request):
     return render(request, 'blogs/new_blog.html', context)
 
 
+@login_required
 def edit_blog(request, edit_id):
     blog = BlogPost.objects.get(id=edit_id)
     if request.method != 'POST':
