@@ -7,20 +7,24 @@
 <body>
     {% extends 'logs/base.html' %}
 
+    {% block header %}
+        <h3>Topics</h3>
+    {% endblock header %}
+
     {% block content %}
-        <h3>Topics:</h3>
+
         <p>
-            <a href="{% url 'logs:new_topic' %}">Add a new topic.</a>
+            <a href="{% url 'logs:new_topic' %}">Add a new topic:</a>
         </p>
-        {% for topic in topics %}
-             <ul>
+        <ul>
+            {% for topic in topics %}
                 <li>
                     <h4>
                         <a href="{% url 'logs:topic' topic.id %}">{{ topic }}</a>
                     </h4>
                 </li>
-             </ul>
-        {% endfor %}
+            {% endfor %}
+        </ul>
 
     {% endblock content %}
 </body>

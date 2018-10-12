@@ -5,15 +5,21 @@
     <title>Title</title>
 </head>
 <body>
-    % extends 'logs/base.html' %}
+    {% extends 'logs/base.html' %}
+    {% load bootstrap4 %}
 
-        {% block content %}
-            <form method="post" action="{% url 'users:register' %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button name="submit">Register</button>
-                <input type="hidden" name="next" value="{% url 'logs:index' %}"/>
-            </form>
-        {% endblock content %}
+    {% block header %}
+        <h3>Please enter your details:</h3>
+    {% endblock header %}
+
+    {% block content %}
+    <form method="post" action="{% url 'users:register' %" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button name="submit" class="btn btn-primary">Register</button>
+        {% endbuttons %}
+    </form>
+    {% endblock content %}
 </body>
 </html>
