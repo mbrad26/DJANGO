@@ -7,9 +7,9 @@
 <body>
     {% extends 'logs/base.html' %}
 
-    {% block content %}
-
-        {% if user.is_authenticated %}
+    {% block header %}
+        <div class="jumbotron">
+            {% if user.is_authenticated %}
             <h3>Welcome to my New Learning Log.</h3>
             <p>As a register user you can now browse the entire collection of logs.</p>
         {% else %}
@@ -17,9 +17,12 @@
                 Thank you.
             </h3>
         {% endif %}
-            <p>
+            <h3>
                <a href="{% url 'logs:topics' %}">Topics</a>
-            </p>
-    {% endblock content %}
+            </h3>
+        </div>
+    {% endblock header %}
+
+    {% block content %} {% endblock content %}
 </body>
 </html>

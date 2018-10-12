@@ -37,9 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third party apps
+    'bootstrap4',
+
     # My apps
     'logs',
     'users',
+
 ]
 
 MIDDLEWARE = [
@@ -126,4 +131,10 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = 'users/login/'
 LOGOUT_REDIRECT_URL = '/'
+
+# Settings for bootstrap3
+
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
 

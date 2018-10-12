@@ -2,21 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load bootstrap4 %}
+    <title>Learning Log</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
 </head>
-<body>
-    <h2>
-        <a href="{% url 'logs:index' %}">New Learning Log</a> -
-        {% if user.is_authenticated %}
-            Hello, {{ user.username }} -
-            <a href="{% url 'users:logout' %}">Log Out</a>
-        {% else %}
-            <a href="{% url 'users:login' %}">Log In</a> -
-            <a href="{% url 'users:register' %}">Register</a>
-        {% endif %}
-    </h2>
 
-    {% block content %}
-    {% endblock content %}
+<body>
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+
+            <div class="navbar-header">
+                 <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"-->
+                        <!--aria-expanded="false" aria-controls="navbar">-->
+                <!--</button>-->
+                <a class="navbar-brand" href="{% url 'logs:index' %}">
+                    New Learning Log</a>
+            </div>
+
+            <div id="navbar" class="navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <li>Hello, {{ user.username }}</li>
+                        <li><a href="{% url 'users:logout' %}">Log Out</a></li>
+                    {% else %}
+                        <li><a href="{% url 'users:login' %}">Log In</a></li>
+                        <li><a href="{% url 'users:register' %}">Register</a></li>
+                   {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            {% block header %} {% endblock header %}
+        </div>
+        <div>
+            {% block content %} {% endblock content %}
+        </div>
+    </div>
 </body>
 </html>
